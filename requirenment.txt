@@ -1,0 +1,27 @@
+# Create virtual environment
+py -m venv .venv
+
+# Activate virtual environment
+.\.venv\Scripts\Activate.ps1
+
+# Upgrade pip
+python -m pip install --upgrade pip
+
+# Install required packages
+python -m pip install mediapipe opencv-python pyautogui
+
+# Download the MediaPipe pose model
+Invoke-WebRequest `
+  -Uri "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_full/float16/1/pose_landmarker_full.task" `
+  -OutFile "pose_landmarker_full.task"
+
+# Check that everything installed correctly
+python -c "import cv2, mediapipe, pyautogui; print('All packages installed successfully!')"
+
+# Launch your program
+python filename.py
+
+
+
+# if Shell block then run 
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
